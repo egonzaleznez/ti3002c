@@ -1,7 +1,12 @@
+# Core libraries
 import numpy as np # to use numpy arrays instead of lists
 import pandas as pd # DataFrame (table)
-import matplotlib.pyplot as plt # to plot
 
+# Matplotlib and seaborn for charting
+import matplotlib.pyplot as plt # to plot
+import seaborn as sns # to plot
+
+# Sklearn processing modules
 from sklearn import preprocessing # to normalize data
 from sklearn.model_selection import train_test_split # to split data in train and test sets
 

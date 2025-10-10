@@ -73,7 +73,7 @@ def procesarDatos(dataSet=0):
 
     newDataset = newDataset.fillna(method='ffill')
 
-    newDataset['Transission'] = [1 if x == 'Automatic' else 0 for x in dataSet['Transission']]
+    newDataset['Transmission'] = [1 if x == 'Automatic' else 0 for x in dataSet['Transmission']]
     newDataset['Fuel_Type'] = [1 if x == 'Petrol' else 
                                2 if x == 'Hybrid' else
                                3 if x == 'Diesel' else

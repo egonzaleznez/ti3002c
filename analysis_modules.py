@@ -69,19 +69,27 @@ def procesarDatos(dataSet=0):
     """
     Normalize  data
     """
-    dataSet = dataSet.fillna(method='ffill')
+    newDataset = dataSet.select_dtypes(exclude=['object']).copy()
+
+    newDataset = newDataset.fillna(method='ffill')
+
+    newDataset['Transission'] = [1 if x == 'Automatic' else 0 for x in dataSet['Transission']]
+    newDataset['Fuel_Type'] = [1 if x == 'Petrol' else 
+                               2 if x == 'Hybrid' else
+                               3 if x == 'Diesel' else
+                               4 for x in dataSet['Fuel_Type']]
 
     # fit the scaler
     scaler = preprocessing.MinMaxScaler()
-    scaler.fit(dataSet)
+    scaler.fit(newDataset)
 
     # Transform the data using the fitted scaler
-    np_dataSet = scaler.transform(dataSet)
+    np_dataSet = scaler.transform(newDataset)
 
     # Convert the numpy array back to a DataFrame
-    dataSet = pd.DataFrame(np_dataSet, columns=dataSet.columns, index=dataSet.index)
+    newDataset = pd.DataFrame(np_dataSet, columns=newDataset.columns, index=newDataset.index)
 
-    return dataSet
+    return newDataset
 
 # --------------------
 def describeData(dataSet=0):

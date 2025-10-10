@@ -91,6 +91,24 @@ def procesarDatos(dataSet=0):
 
     return newDataset
 
+def computeCorr(dataSet=0):
+    """
+    Compute CORRELATION
+    """
+
+    # correlation analysis
+    correlation=dataSet.corr(method = 'pearson')
+    print("==========================================================")
+    print("                 CORRELATION ANALYSIS")
+    print("----------------------------------------------------------")
+    print(correlation)
+    print("\n")
+
+    plt.figure()
+    sns.heatmap(correlation, annot=True)
+    plt.title('CORRELATION MATRIX', fontweight='bold')
+    plt.show()
+
 # --------------------
 def describeData(dataSet=0):
     """

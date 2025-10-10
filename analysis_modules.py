@@ -65,6 +65,25 @@ def preprocess(dataSet=0):
     return dataSet
 
 # --------------------
+def procesarDatos(dataSet=0):
+    """
+    Normalize  data
+    """
+    dataSet = dataSet.fillna(method='ffill')
+
+    # fit the scaler
+    scaler = preprocessing.MinMaxScaler()
+    scaler.fit(dataSet)
+
+    # Transform the data using the fitted scaler
+    np_dataSet = scaler.transform(dataSet)
+
+    # Convert the numpy array back to a DataFrame
+    dataSet = pd.DataFrame(np_dataSet, columns=dataSet.columns, index=dataSet.index)
+
+    return dataSet
+
+# --------------------
 def describeData(dataSet=0):
     """
     Data descriptive statistics
